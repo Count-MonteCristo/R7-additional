@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @order %>
+
+<div>
+    <%= link_to "Edit order", edit_order_path(@order) %> 
+    <%= link_to "Back to orders", orders_path %>
+    <%= link_to "Delete this order", @order, data: {"turbo-method": :delete} %>
+</div>
