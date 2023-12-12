@@ -9,13 +9,34 @@
 </div>
 
 <div id="orders">
- <% if @customer.orders.present? %>
-    <h2>Orders</h2>
-      <% @customer.orders.each do |order| %>
-        <%= render order %>
-        <p><%= link_to "Show order", order %></p>
-        <p><%= link_to "Edit order", edit_order_path(order) %></p>
-        <p><%= link_to "Delete this order", data: {"turbo-method": :delete} %></p>
-      <% end %>
+  <% if @customer.orders.present? %>
+    <h2>Customer Orders</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customer.orders.each do |order| %>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.product_name %></td>
+            <td><%= order.product_count %></td>
+            <td>
+              <p><%= link_to "Show order", order %></p>
+              <p><%= link_to "Edit order", edit_order_path(order) %></p>
+              <!-- Add proper path and method for deleting the order -->
+              <p><%= link_to "Delete this order", order, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No orders found for this customer.</p>
   <% end %>
 </div>
