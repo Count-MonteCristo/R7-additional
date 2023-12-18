@@ -1,0 +1,31 @@
+@import "bootstrap";
+@import "font-awesome";
+
+.my_alert {
+  color: red;
+}
+
+:root {
+  --bs-body-bg: #fffffe;
+}
+
+@font-face {
+  font-family: "Radnika";
+  src: url("Radnika-medium.otf");
+}
+
+.banner-background {
+  background-image: url("r7-banner-image.jpg");
+  background-size: cover;
+  font-family: "Radnika";
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.ordersButton {
+  margin-top: 20px;
+}

@@ -11,10 +11,21 @@
   </head>
 
   <body>
-    <% if flash[:alert].present? %>
-      <p class="my_alert"><%= flash[:alert] %></p>
-    <% end %>
-    
+  <div classname="container-fluid">
+  <!-- Bootstrap danger alert for flash[:alert] -->
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <!-- Bootstrap success alert for flash[:notice] -->
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
     <%= yield %>
+  </div>
   </body>
 </html>
