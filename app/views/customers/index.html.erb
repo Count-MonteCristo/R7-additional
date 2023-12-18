@@ -1,14 +1,56 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Customers</h1>
-
-<div id="customers">
-  <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
-  <% end %>
+<div class="p-5 bg-primary text-white banner-background">
+  <h1>Customers</h1>
+  <p>This is a sample application that associates customers with orders</p>
 </div>
 
-<%= link_to "New customer", new_customer_path %>
+<nav class="navbar navbar-expand-sm bg-light navbarBG">
+
+  <div class="container-fluid">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link btn dropdown-toggle" href="/customers">Customers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn dropdown-toggle" href="/orders">Orders</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+<p style="color: green"><%= notice %></p>
+
+<div id="customers">
+  <div class="d-flex justify-content-center">
+    <div class="table-responsive" style="width: 98%;">
+    <h2>Customers</h2>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th><%= icon('fa-regular', 'user')%> Full Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Total Orders</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr id="<%= dom_id customer %>">
+              <td><%= customer.full_name %></td>
+              <td><%= customer.phone %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.orders.count %></td>
+              <td class="button-container">
+                <%= link_to "Show", customer, class: "btn btn-primary" %>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id%>">Delete </button>
+                <%= render partial: "customers/deleteModal", locals: { customer: customer } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "New customer", new_customer_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

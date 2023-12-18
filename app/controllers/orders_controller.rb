@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
           flash.notice = "The order record was created successfully."
           redirect_to @order
         else
+          flash[:alert] = "Error creating the customer record."
           render :new, status: :unprocessable_entity
         end
     end
